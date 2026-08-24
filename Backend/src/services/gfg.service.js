@@ -9,19 +9,7 @@ const DEFAULT_HEADERS = {
   Origin: "https://www.geeksforgeeks.org",
 };
 
-/**
- * Fetches and parses GeeksforGeeks coding profile statistics and difficulty breakdown.
- *
- * Strategy:
- * 1. Queries GFG Practice API (POST https://practiceapi.geeksforgeeks.org/api/v1/user/problems/submissions/)
- *    to obtain the exact problem list and difficulty breakdown (School, Basic, Easy, Medium, Hard).
- * 2. Queries GFG Auth API (GET https://authapi.geeksforgeeks.org/api-get/user-profile-info/?handle=...)
- *    to retrieve authoritative profile stats (coding score, monthly score, streaks, total solved).
- * 3. Falls back to Next.js RSC/HTML parsing if the auth API is unreachable or fails.
- */
-
 export async function getGfgCodingData(username) {
-  // 1. Validate username
   if (!username || typeof username !== "string" || !username.trim()) {
     throw new Error("GFG handle missing");
   }
@@ -29,7 +17,6 @@ export async function getGfgCodingData(username) {
   const cleanUsername = username.trim();
   console.log(`[GFG Service] Fetching data for user: ${cleanUsername}`);
 
-  // 2. Fetch submissions & difficulty breakdown from GFG Practice API
   let problemsOverview = {
     school: 0,
     basic: 0,
@@ -82,7 +69,6 @@ export async function getGfgCodingData(username) {
         hard: Object.keys(hardObj).length,
       };
 
-      // Collect solved problems array if available
       const difficulties = [
         { name: "School", obj: schoolObj },
         { name: "Basic", obj: basicObj },
@@ -108,13 +94,6 @@ export async function getGfgCodingData(username) {
       console.log(`[GFG Service] Practice API success:`, problemsOverview);
     }
 
-    //     {
-    //     status: 200,
-    //     data: {
-    //         message: "Please provide valid User Details" --> f username is invalid
-    //     }
-    // }
-
     else if (
       practiceRes.status === 406 ||
       practiceRes.data?.message?.includes("valid User Details")
@@ -127,7 +106,6 @@ export async function getGfgCodingData(username) {
     console.warn(`[GFG Service] Practice API request failed: ${err.message}`);
   }
 
-  // 3. Fetch profile stats from GFG Auth API
   let codingScore = 0;
   let monthlyScore = 0;
   let totalProblemsSolved = 0;
@@ -205,7 +183,6 @@ export async function getGfgCodingData(username) {
     console.warn(`[GFG Service] Auth API request failed: ${err.message}`);
   }
 
-  // 4. Fallback to HTML / RSC extraction if auth API failed
   if (!authApiSuccess) {
     try {
       console.log(
@@ -273,7 +250,6 @@ export async function getGfgCodingData(username) {
     }
   }
 
-  // Calculate total from breakdown if totalProblemsSolved is 0 but breakdown exists
   const totalFromBreakdown =
     problemsOverview.school +
     problemsOverview.basic +

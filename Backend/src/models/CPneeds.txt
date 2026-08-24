@@ -1,0 +1,39 @@
+-------------------------21/08/26-----------------------
+
+Coding Score (numerical value)
+
+Total Problems Solved
+
+Problems Overview (School, Basic, Easy, Medium, Hard)
+
+POTDs solved count
+
+List of solved problems (titles, difficulty level, date solved)
+
+I want smtg like : (Gemini ko yahi input jaega as userContext)
+{
+    username: "225arma09s6",
+    codingScore: 420,
+    totalSolved: 180,
+    problemsOverview: {
+        school: 20,
+        basic: 40,
+        easy: 50,
+        medium: 55,
+        hard: 15
+    },
+    potdSolved: 35,
+    solvedProblems: [
+        {
+            title: "Two Sum",
+            difficulty: "Easy",
+            solvedAt: "2026-08-20"
+        },
+        {
+            title: "Binary Tree Traversal",
+            difficulty: "Medium",
+            solvedAt: "2026-08-19"
+        }
+    ],
+    fetchedAt: new Date()
+}

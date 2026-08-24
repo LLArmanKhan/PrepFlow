@@ -1,0 +1,6 @@
+{
+  "name": "PrepFlow",
+  "description": "Comprehensive interview preparation platform with competitive programming stats, subject progress tracking, AI assistant, and goal management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

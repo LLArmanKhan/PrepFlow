@@ -267,7 +267,7 @@ PrepFlow/
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/PrepFlow.git
+git clone https://github.com/LLArmanKhan/PrepFlow.git
 cd PrepFlow
 ```
 
@@ -460,28 +460,6 @@ Client Request
 
 ---
 
-# 🤝 Contributing
-
-Contributions, ideas, and feedback are welcome!
-
-```bash
-# Fork the repository
-
-# Create your feature branch
-git checkout -b feature/AmazingFeature
-
-# Commit your changes
-git commit -m "Add AmazingFeature"
-
-# Push to the branch
-git push origin feature/AmazingFeature
-
-# Open a Pull Request
-```
-
-Before submitting a PR, please make sure your changes are tested and follow the existing project structure.
-
----
 
 # 💡 Future Vision
 

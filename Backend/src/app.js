@@ -14,7 +14,10 @@ const app = express();
 
 const corsOptions = {
   origin: (origin, callback) => {
-    callback(null, true);
+    if(!origin || origin==="http://localhost:3000")
+      callback(null, true);
+    else
+      return callback(new Error(`Origin ${origin} not allowed by CORS`));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
